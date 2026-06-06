@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ずびずばテレポ 総合版</title>
+<style>
+  :root{
+    --bg:#07111f;
+    --panel:#0d1a2b;
+    --panel2:#12233a;
+    --line:rgba(143,211,255,.22);
+    --text:#e8f1ff;
+    --muted:#9bb0d3;
+    --accent:#8fd3ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:radial-gradient(circle at top,#142745,#07111f 60%);
+    color:var(--text);
+  }
+  .wrap{max-width:1400px;margin:0 auto;padding:18px}
+  .hero{
+    background:linear-gradient(180deg,rgba(18,35,58,.92),rgba(10,22,38,.94));
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:16px 18px;
+    box-shadow:0 20px 45px rgba(0,0,0,.3);
+  }
+  h1{font-size:28px;margin:0 0 8px}
+  .sub{color:var(--muted);margin:0 0 14px;line-height:1.55}
+  .controls{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+    margin-top:12px;
+  }
+  .group{
+    background:rgba(8,18,33,.78);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:12px;
+  }
+  .label{
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:10px;
+    font-weight:700;
+    letter-spacing:.03em;
+  }
+  .btns{display:flex;flex-wrap:wrap;gap:10px}
+  button.switch{
+    appearance:none;
+    border:none;
+    border-radius:12px;
+    padding:12px 16px;
+    background:#1a2b43;
+    color:var(--text);
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    border:1px solid rgba(255,255,255,.08);
+    transition:.15s transform,.15s background,.15s border-color;
+  }
+  button.switch:hover{transform:translateY(-1px);background:#223857}
+  button.switch.active{
+    background:linear-gradient(135deg,#4aa4ff,#8f7dff);
+    border-color:rgba(255,255,255,.2);
+  }
+  .frameWrap{
+    margin-top:14px;
+    background:rgba(4,12,22,.88);
+    border:1px solid var(--line);
+    border-radius:18px;
+    overflow:hidden;
+    min-height:84vh;
+  }
+  iframe{
+    display:block;
+    width:100%;
+    height:84vh;
+    border:0;
+    background:#07111f;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>ずびずばテレポ 総合版</h1>
+    <p class="sub">フィリピン箱式 / 回転寿司式を切り替えられる版です。ノーマル / ハードは各ツール内のボタンで切り替えます。</p>
+
+    <div class="controls">
+      <div class="group">
+        <div class="label">方式</div>
+        <div class="btns">
+          <button class="switch" id="stylePhil" type="button">フィリピン箱式</button>
+          <button class="switch" id="styleSushi" type="button">回転寿司式</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="frameWrap">
+      <iframe id="toolFrame" title="ずびずばテレポ練習ツール"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOOLS = {
+  philippine: "philippine.html",
+  sushi: "sushi.html"
+};
+
+let currentStyle = localStorage.getItem("zubizubaLauncherStyle") || "sushi";
+
+const frame = document.getElementById("toolFrame");
+const stylePhil = document.getElementById("stylePhil");
+const styleSushi = document.getElementById("styleSushi");
+
+function updateButtons(){
+  stylePhil.classList.toggle("active", currentStyle === "philippine");
+  styleSushi.classList.toggle("active", currentStyle === "sushi");
+}
+
+function loadCurrentTool(){
+  localStorage.setItem("zubizubaLauncherStyle", currentStyle);
+  frame.src = TOOLS[currentStyle];
+  updateButtons();
+}
+
+stylePhil.addEventListener("click", () => {
+  currentStyle = "philippine";
+  loadCurrentTool();
+});
+
+styleSushi.addEventListener("click", () => {
+  currentStyle = "sushi";
+  loadCurrentTool();
+});
+
+loadCurrentTool();
+</script>
+</body>
+</html>
