@@ -192,6 +192,36 @@ summary{cursor:pointer;color:var(--text);font-weight:700}
   .buttons{grid-template-columns:1fr}
   .question{grid-template-columns:1fr}
 }
+
+  /* スマホでも左右デバフを横並びにする */
+.question{
+  grid-template-columns:1fr 1fr!important;
+  gap:8px!important;
+}
+
+@media(max-width:620px){
+  .question{
+    grid-template-columns:1fr 1fr!important;
+    gap:8px!important;
+  }
+
+  .debuff{
+    min-height:96px!important;
+    padding:10px!important;
+  }
+
+  .debuff .label{
+    font-size:12px!important;
+  }
+
+  .arrow{
+    font-size:42px!important;
+  }
+
+  .time{
+    font-size:20px!important;
+  }
+}
 </style>
 
 <style>
