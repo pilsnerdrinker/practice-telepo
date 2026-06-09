@@ -85,7 +85,11 @@
     background:#07111f;
   }
 
-.readmeLinkBox{
+.linkRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
   margin:10px 0 14px;
 }
 
@@ -102,8 +106,34 @@
   text-decoration:none;
 }
 
-.readmeLinkBox a:hover{
+.readmeLinkBox a:hover,
+.practiceLinks a:hover{
   filter:brightness(1.12);
+}
+
+.practiceLinks{
+  margin-left:auto;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.practiceLinks a{
+  color:#8fd3ff;
+  text-decoration:none;
+  font-weight:900;
+}
+
+@media (max-width: 640px){
+  .linkRow{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .practiceLinks{
+    margin-left:0;
+    white-space:normal;
+  }
 }
   
 </style>
@@ -113,9 +143,14 @@
   <div class="hero">
     <h1>ずびずばテレポ 総合版</h1>
     <p class="sub">フィリピン箱式 / 回転寿司式を切り替えられる版です。ノーマル / ハードは各ツール内のボタンで切り替えます。</p>
-    <div class="readmeLinkBox">
-      <a href="https://github.com/pilsnerdrinker/practice-telepo#readme" target="_blank" rel="noopener noreferrer">
-      使い方・仕様（README）を見る </a>
+    <div class="linkRow">
+      <div class="readmeLinkBox">
+        <a href="https://github.com/pilsnerdrinker/practice-telepo#readme" target="_blank" rel="noopener noreferrer">
+        使い方・仕様（README）を見る </a>
+      </div>
+      <div class="practiceLinks">
+        他の練習ページ：<a href="https://pilsnerdrinker.github.io/raidshelf/" target="_blank" rel="noopener noreferrer">raidshelf</a>
+      </div>
     </div>
 
     <div class="controls">
